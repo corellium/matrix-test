@@ -1,0 +1,26 @@
+name: Run Corellium MATRIX solution
+
+on: [push]
+
+jobs:
+  corellium-matrix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: Corellium MATRIX
+        id: corellium-matrix
+        uses: corellium/matrix@core-7413
+        env:
+          PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
+          API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
+        with:
+          deviceFlavor: 'iphone14p'
+          deviceOS: '17.2'
+          server: 'https://jedi.enterprise.corellium.com'
+          appPath: './Corellium_Cafe.ipa'
+          userActions: './inputs.json'
+
+      - run: echo "${{ steps.corellium-matrix.outputs.report }}"
