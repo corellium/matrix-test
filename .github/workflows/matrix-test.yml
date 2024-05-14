@@ -20,8 +20,8 @@ jobs:
           deviceFlavor: 'iphone14p'
           deviceOS: '17.2'
           server: 'https://jedi.enterprise.corellium.com'
-          appPath: './Corellium_Cafe.ipa'
-          userActions: './inputs.json'
-          keywords: './keywords.txt'
+          appPath: 'https://www.dropbox.com/scl/fi/a5wodpmpbrsn8nxtm1uof/Corellium_Cafe.ipa?rlkey=do4aqp1gbd6vuljjkhf71ois9&st=p36wn82o&dl=1'
+          userActions: 'https://drive.usercontent.google.com/download?id=11lrp46uk_1HRupp23t5de3fZ1ueH8C6w'
+          keywords: 'https://drive.usercontent.google.com/download?id=1E2dQY9llh4cotntPz2ms_qTN71_qQR2I'
 
       - run: echo "${{ steps.corellium-matrix.outputs.report }}"
