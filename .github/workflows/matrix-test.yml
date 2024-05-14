@@ -22,5 +22,6 @@ jobs:
           server: 'https://jedi.enterprise.corellium.com'
           appPath: './Corellium_Cafe.ipa'
           userActions: './inputs.json'
+          keywords: './keywords.txt'
 
       - run: echo "${{ steps.corellium-matrix.outputs.report }}"
