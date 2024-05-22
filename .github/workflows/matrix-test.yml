@@ -20,7 +20,7 @@ jobs:
           deviceFlavor: 'iphone14p'
           deviceOS: '17.2'
           server: 'https://jedi.enterprise.corellium.com'
-          appPath: './Corellium_Cafe.ipa'
+          appPath: './apps/Corellium_Cafe.ipa'
           userActions: './inputs.json'
           keywords: './keywords.txt'
 
