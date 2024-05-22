@@ -4,18 +4,13 @@ on: [push]
 
 jobs:
 
-  setup:
+  ios:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-  ios:
-    needs: setup
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Run Corellium MATRIX
         uses: corellium/matrix@v2.0.0
         env:
@@ -30,10 +25,12 @@ jobs:
           keywords: './keywords.txt'
 
   android:
-    needs: setup
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run Corellium MATRIX
         uses: corellium/matrix@v2.0.0
         env:
