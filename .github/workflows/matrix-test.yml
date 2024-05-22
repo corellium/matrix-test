@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Corellium MATRIX
-        id: corellium-matrix
-        uses: corellium/matrix@core-7413
+      - name: Run Corellium MATRIX
+        uses: corellium/matrix
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
@@ -23,5 +22,3 @@ jobs:
           appPath: './apps/Corellium_Cafe.ipa'
           userActions: './inputs.json'
           keywords: './keywords.txt'
-
-      - run: echo "${{ steps.corellium-matrix.outputs.report }}"
