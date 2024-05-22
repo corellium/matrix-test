@@ -3,16 +3,21 @@ name: Run Corellium MATRIX solution
 on: [push]
 
 jobs:
-  corellium-matrix:
+
+  setup:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Corellium MATRIX
-        id: corellium-matrix
-        uses: corellium/matrix@core-7413
+  ios:
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Corellium MATRIX
+        uses: corellium/matrix@v2.0.0
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
@@ -20,8 +25,24 @@ jobs:
           deviceFlavor: 'iphone14p'
           deviceOS: '17.2'
           server: 'https://jedi.enterprise.corellium.com'
-          appPath: './Corellium_Cafe.ipa'
+          appPath: './apps/Corellium_Cafe.ipa'
           userActions: './inputs.json'
           keywords: './keywords.txt'
 
-      - run: echo "${{ steps.corellium-matrix.outputs.report }}"
+  android:
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Corellium MATRIX
+        uses: corellium/matrix@v2.0.0
+        env:
+          PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
+          API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
+        with:
+          deviceFlavor: 'ranchu'
+          deviceOS: '14.0'
+          server: 'https://jedi.enterprise.corellium.com'
+          appPath: './apps/Corellium_Cafe.apk'
+          userActions: './inputs.json'
+          keywords: './keywords.txt'
