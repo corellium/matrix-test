@@ -38,7 +38,7 @@ jobs:
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
         with:
           deviceFlavor: 'ranchu'
-          deviceOS: '14.0'
+          deviceOS: '14.0.0'
           server: 'https://jedi.enterprise.corellium.com'
           appPath: './apps/Corellium_Cafe.apk'
           userActions: './inputs.json'
