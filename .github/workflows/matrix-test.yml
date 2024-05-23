@@ -3,8 +3,30 @@ name: Run Corellium MATRIX solution
 on: [push]
 
 jobs:
+  upload-user-actions-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p ${{ github.workspace }}/test
+      - run: echo "[{\"text\":\"hello world\"}]" > ${{ github.workspace }}/test/user-actions.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-user-actions
+          path: ${{ github.workspace }}/test/user-actions.json
+
+  upload-keywords-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: mkdir -p ${{ github.workspace }}/test
+      - run: echo helloWorld > ${{ github.workspace }}/test/keywords.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: test-keywords
+          path: ${{ github.workspace }}/test/keywords.txt
 
   ios:
+    needs: [upload-user-actions-file, upload-keywords-file]
     runs-on: ubuntu-latest
 
     steps:
@@ -14,6 +36,11 @@ jobs:
           repository: corellium/matrix
           path: main
           ref: core-7866-open-app
+
+      - name: Download user actions
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/test
 
       - name: Run Corellium MATRIX
         uses: corellium/matrix@core-7866-open-app
@@ -24,11 +51,12 @@ jobs:
           deviceFlavor: 'iphone14p'
           deviceOS: '17.2'
           server: 'https://jedi.enterprise.corellium.com'
-          appPath: './apps/Corellium_Cafe.ipa'
-          userActions: './inputs.json'
-          keywords: './keywords.txt'
+          appPath: 'https://www.corellium.com/hubfs/Corellium_Cafe.ipa'
+          userActions: '/test/test-user-actions/user-actions.json'
+          keywords: '/test/test-keywords/keywords.txt'
 
   android:
+    needs: [upload-user-actions-file, upload-keywords-file]
     runs-on: ubuntu-latest
 
     steps:
@@ -39,6 +67,11 @@ jobs:
           path: main
           ref: core-7866-open-app
 
+      - name: Download user actions
+        uses: actions/download-artifact@v4
+        with:
+          path: ${{ github.workspace }}/test
+
       - name: Run Corellium MATRIX
         uses: corellium/matrix@core-7866-open-app
         env:
@@ -48,6 +81,6 @@ jobs:
           deviceFlavor: 'ranchu'
           deviceOS: '14.0.0'
           server: 'https://jedi.enterprise.corellium.com'
-          appPath: './apps/Corellium_Cafe.apk'
-          userActions: './inputs.json'
-          keywords: './keywords.txt'
+          appPath: 'https://www.corellium.com/hubfs/Corellium_Cafe.apk'
+          userActions: '/test/test-user-actions/user-actions.json'
+          keywords: '/test/test-keywords/keywords.txt'
