@@ -13,10 +13,10 @@ jobs:
         with:
           repository: corellium/matrix
           path: main
-          ref: core-7866
+          ref: core-7866-open-app
 
       - name: Run Corellium MATRIX
-        uses: corellium/matrix@core-7866
+        uses: corellium/matrix@core-7866-open-app
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
@@ -37,10 +37,10 @@ jobs:
         with:
           repository: corellium/matrix
           path: main
-          ref: core-7866
+          ref: core-7866-open-app
 
       - name: Run Corellium MATRIX
-        uses: corellium/matrix@core-7866
+        uses: corellium/matrix@core-7866-open-app
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
