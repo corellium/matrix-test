@@ -10,9 +10,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          repository: corellium/matrix
+          path: main
+          ref: core-7866
 
       - name: Run Corellium MATRIX
-        uses: corellium/matrix@v2.0.0
+        uses: corellium/matrix@core-7866
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
@@ -30,9 +34,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          repository: corellium/matrix
+          path: main
+          ref: core-7866
 
       - name: Run Corellium MATRIX
-        uses: corellium/matrix@v2.0.0
+        uses: corellium/matrix@core-7866
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
