@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Corellium MATRIX
-        uses: corellium/matrix@v2.0.0
+        uses: corellium/matrix@v2.1.1
         env:
           PROJECT: ${{ secrets.CORELLIUM_PROJECT_ID }}
           API_TOKEN: ${{ secrets.CORELLIUM_API_KEY }}
