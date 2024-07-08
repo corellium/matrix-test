@@ -1,6 +1,6 @@
 name: Run Corellium MATRIX solution
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
 
